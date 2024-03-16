@@ -1,5 +1,5 @@
 export const handleInvalidEntry = (message, inputElement) => {
-    if (!inputElement || !inputLabel) {
+    if (!inputElement) {
         console.error('Invalid input element or label arguments');
         return null;
     }
