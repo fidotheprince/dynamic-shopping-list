@@ -56,6 +56,13 @@ header h1 {
 .fade-in {
   opacity: 0;
   animation: fadeIn 1s forwards;
+  transition: box-shadow 0.7s ease-in-out;
+  transition: border 0.7s ease-in-out;
+}
+
+.fade-in:hover {
+  border: 1px solid #728393;
+  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.1);
 }
 
 @keyframes fadeIn {
@@ -64,7 +71,7 @@ header h1 {
 }
 
 .fade-out {
-  animation: fadeOut 0.7s forwards;
+  animation: fadeOut 0.5s forwards;
   background: #F88379;
 }
 
