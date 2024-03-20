@@ -41,5 +41,6 @@ export const addToShoppingList = (item, shoppingList) => {
 export const removeFromShoppingList = (item, shoppingList) => {
     const index = shoppingList.indexOf(item);
     shoppingList.splice(index, 1);
+    shoppingList.length < 1 ? localStorage.removeItem('shoppingList') :
     localStorage.setItem('shoppingList', JSON.stringify(shoppingList));
 }
