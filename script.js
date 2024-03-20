@@ -3,7 +3,8 @@ import { handleInvalidEntry, createItem, addToShoppingList, deleteItem, removeFr
 const itemForm = document.getElementById('item-form');
 const itemInput = document.getElementById('item-input');
 const itemList = document.getElementById('item-list');
-const clearListBtn = document.getElementById('clear')
+const clearListBtn = document.getElementById('clear');
+const fInputContainer = document.querySelector('.filter');
 
 const shoppingList = localStorage.getItem('shoppingList') ? JSON.parse(localStorage.getItem('shoppingList')) : [];
 
@@ -25,8 +26,7 @@ const filterInput = (input) => {
 }
 
 const filterAndClearButton = (state) => {
-    const fInput = document.querySelector('.filter');
-    fInput.style.display = state;
+    fInputContainer.style.display = state;
     clearListBtn.style.display = state;
 }
 
@@ -69,8 +69,31 @@ const clearItems = () => {
     filterAndClearButton('none');
 }
 
+const sortItems = () => {
+    const input = fInputContainer.children[0];
+    const value = input.value.toLowerCase();
+    
+    if(value.length < 1) {
+        //clear existing filtered list
+        while(itemList.firstChild) {
+            itemList.removeChild(itemList.firstChild);
+        }
+        loadItems();
+    }
+    
+    if(value.length > 1){
+        let filteredItems = shoppingList.filter(item => item.toLowerCase().includes(value));
+        //clear existing rendered list
+        while(itemList.firstChild) {
+            itemList.removeChild(itemList.firstChild);
+        }
+        filteredItems.forEach(item => createItem(item, itemList));
+    }
+}
+
 // Event Listeners
 window.onload = loadItems;
 itemForm.addEventListener('submit', addItem);
 itemList.addEventListener('click', removeItem);
+fInputContainer.addEventListener('input', sortItems);
 clearListBtn.addEventListener('click', clearItems);
