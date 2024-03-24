@@ -1,6 +1,6 @@
-# Project Title
+# Grocery List Pal 😊
 
-![Project Banner](https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif)
+![Funny GIF](https://media.giphy.com/media/3o7aTskHEUdgCQAXde/giphy.gif)
 
 ## Description
 
