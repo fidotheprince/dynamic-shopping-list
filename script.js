@@ -45,6 +45,7 @@ const addItem = (e) => {
     filterInput(itemInput);
 
     if(itemInput.value !== '') {
+        sortedList.innerHTML = '';
         addToShoppingList(itemInput.value, shoppingList);
         createItem(itemInput.value, itemList);
         filterAndClearButton('block');
