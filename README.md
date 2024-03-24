@@ -1,4 +1,4 @@
-# Grocery List Pal 😊
+# Grocery Pal 😊
 
 ![Funny GIF](https://media.giphy.com/media/3o7aTskHEUdgCQAXde/giphy.gif)
 
