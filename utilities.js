@@ -17,6 +17,7 @@ export const handleInvalidEntry = (message, inputElement) => {
 export const createItem = (itemName, itemList) => {
     const li = document.createElement('li');
     li.classList.add('fade-in');
+    li.classList.add('item');
     li.innerHTML = `
         ${itemName}
         <button class="remove-item btn-link text-red">
@@ -35,7 +36,7 @@ export const createSortedCategory = (category, sortedList) => {
     li.innerHTML = `
         <h3>${title}</h3>
         <ul>${category[title].map(item => `
-                <li class="fade-in">
+                <li class="fade-in sorted-item">
                     ${item}
                     <button class="remove-item btn-link text-red">
                         <i class="fa-solid fa-xmark"></i>
