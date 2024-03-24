@@ -135,28 +135,3 @@ header h1 {
   color: red;
 }
 
-/* Items */
-
-.items {
-  margin-top: 20px;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.items li {
-  display: flex;
-  justify-content: space-between;
-  width: 45%;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 10px 15px;
-  margin: 0 5px 20px;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-@media (max-width: 500px) {
-  .items li {
-    width: 100%;
-  }
-}

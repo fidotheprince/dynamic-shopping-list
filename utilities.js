@@ -27,6 +27,27 @@ export const createItem = (itemName, itemList) => {
     itemList ? itemList.appendChild(li) : console.error({ error: 'please input a list element <ol> or <ul>'});
 };
 
+export const createSortedCategory = (category, sortedList) => {
+    const key = Object.keys(category);
+    const title = key[0];
+    const li = document.createElement('li');
+    li.classList.add('category');
+    li.innerHTML = `
+        <h3>${title}</h3>
+        <ul>${category[title].map(item => `
+                <li class="fade-in">
+                    ${item}
+                    <button class="remove-item btn-link text-red">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </li>
+            `).join('')}
+        </ul>
+    `;
+
+    sortedList.appendChild(li);
+}
+
 export const deleteItem = (e) => {
     setTimeout(() => {
         e.target.closest('li').remove();

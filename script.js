@@ -1,10 +1,12 @@
-import { handleInvalidEntry, createItem, addToShoppingList, deleteItem, removeFromShoppingList } from "./utilities.js";
+import { handleInvalidEntry, createItem, addToShoppingList, deleteItem, removeFromShoppingList, createSortedCategory} from "./utilities.js";
 
 const itemForm = document.getElementById('item-form');
 const itemInput = document.getElementById('item-input');
 const itemList = document.getElementById('item-list');
 const clearListBtn = document.getElementById('clear');
 const fInputContainer = document.querySelector('.filter');
+const categorizeButton = document.querySelector('.categorize');
+const sortedList = document.getElementById('sorted-list');
 
 const shoppingList = localStorage.getItem('shoppingList') ? JSON.parse(localStorage.getItem('shoppingList')) : [];
 
@@ -91,9 +93,33 @@ const sortItems = () => {
     }
 }
 
+const categorize = async (e) => {
+    e.preventDefault();
+    console.log(shoppingList)
+    const url = 'http://localhost:3000';
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(shoppingList)
+    }
+    try {
+        const response = await fetch(url, options);
+        const json = await response.json();
+        const { data } = json;
+        const content = JSON.parse(data?.message?.content);
+        itemList.innerHTML = '';
+        content.forEach(category => createSortedCategory(category, sortedList));
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
 // Event Listeners
 window.onload = loadItems;
 itemForm.addEventListener('submit', addItem);
 itemList.addEventListener('click', removeItem);
+categorizeButton.addEventListener('click', categorize);
 fInputContainer.addEventListener('input', sortItems);
 clearListBtn.addEventListener('click', clearItems);
