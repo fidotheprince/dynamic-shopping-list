@@ -1,18 +1,14 @@
 # Grocery Pal 😊
 
-![Funny GIF](https://media.giphy.com/media/3o7aTskHEUdgCQAXde/giphy.gif)
+![Shopping GIF](https://media.giphy.com/media/l2Je66zG6mAAZxgqI/giphy.gif)
 
 ## Description
 
-Add a brief description of your project here.
+A spin on a classic grocery list application, Grocery Pal allows users to create a list of grocery items and sort them by category dynamically through the use of Text Model in the background. This application is perfect for users who want to keep their grocery list organized and sorted by category.
 
-## Future Enhancements
+Accordingly, this application will automatically sort the list by category and display the sorted list to the user. The text model in the backend will classify any set of items you submit to your list. 
 
-1. **Handle new items after sorting**: Currently, the behavior when a user adds an item after the grocery items have been sorted is not defined. This needs to be handled in a future update.
-
-2. **Save and reset sorted lists**: The application should be able to save sorted lists for future reference. Additionally, the sorted list should be reset anytime a new item is added to ensure the list remains sorted.
-
-3. **Toggle between general and sorted lists**: A feature could be added to allow users to toggle between viewing a general list and a sorted list. This would give users more flexibility in how they view their grocery items.
+You're also able to print out your list and take it with to the store, or send it to a loved one to pick up the items for you, by downloading a PDF of your list.
 
 ## Installation
 
