@@ -51,7 +51,7 @@ export const createSortedCategory = (category, sortedList) => {
 export const fetchChatResponse = async (createSortedCategory, sortedList, shoppingList, itemList) => {
     localStorage.getItem('sortedList') && localStorage.removeItem('sortedList');
     
-    const url = 'http://localhost:3000/';
+    const url = 'https://dynamic-shopping-api-fd908359fc38.herokuapp.com/';
     const options = {
         method: 'POST',
         headers: {
