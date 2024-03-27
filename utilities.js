@@ -49,6 +49,8 @@ export const createSortedCategory = (category, sortedList) => {
 }
 
 export const fetchChatResponse = async (createSortedCategory, sortedList, shoppingList, itemList) => {
+    localStorage.getItem('sortedList') && localStorage.removeItem('sortedList');
+    
     const url = 'http://localhost:3000';
     const options = {
         method: 'POST',
@@ -60,7 +62,12 @@ export const fetchChatResponse = async (createSortedCategory, sortedList, shoppi
     const response = await fetch(url, options);
     const json = await response.json();
     const { data } = json;
+    if(!data) {
+        console.error('No data received');
+        return null;
+    }
     const content = JSON.parse(data?.message?.content);
+    localStorage.setItem('sortedList', JSON.stringify(content));
     itemList.innerHTML = '';
     content.forEach(category => createSortedCategory(category, sortedList));
 }

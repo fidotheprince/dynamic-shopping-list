@@ -44,6 +44,10 @@
             <i class="fa-solid fa-trash"></i> 
             <span>Clear All</span>
           </button>
+          <button id="download" class="btn-download">
+            <i class="fa-solid fa-file-pdf"></i>
+            <span>Download PDF</span>
+          </button>
         </div>
       </form>
  
@@ -58,7 +62,9 @@
       <ul id="item-list" class="items"></ul>
       <ul id="sorted-list" class="sorted-items"></ul>
     </div>
-
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
+    <script src="pdfgen.js"></script>
     <script type="module" src="script.js"></script>
   </body>
 </html>

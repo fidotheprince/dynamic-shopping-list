@@ -1,17 +1,21 @@
-import { handleInvalidEntry, createItem, addToShoppingList, deleteItem, removeFromShoppingList, createSortedCategory, fetchChatResponse} from "./utilities.js";
+import { 
+    removeFromShoppingList, 
+    createSortedCategory,
+    handleInvalidEntry,  
+    fetchChatResponse,
+    addToShoppingList,
+    createItem, 
+    deleteItem,  
+} from "./utilities.js";
 
+const clearListBtn = document.getElementById('clear');
+const itemList = document.getElementById('item-list');
 const itemForm = document.getElementById('item-form');
 const itemInput = document.getElementById('item-input');
-const itemList = document.getElementById('item-list');
-const clearListBtn = document.getElementById('clear');
+const sortedList = document.getElementById('sorted-list');
 const fInputContainer = document.querySelector('.filter');
 const categorizeButton = document.querySelector('.categorize');
-const sortedList = document.getElementById('sorted-list');
-const seeSortedList = document.querySelector('.see-sorted-list');
-
 const shoppingList = localStorage.getItem('shoppingList') ? JSON.parse(localStorage.getItem('shoppingList')) : [];
-const sortedListItems = localStorage.getItem('sortedList') ? JSON.parse(localStorage.getItem('sortedList')) : [];
-
 const hideSortingOptions = () => shoppingList.length < 10 ? categorizeButton.style.display = 'none' : categorizeButton.style.display = 'block';
 
 const filterInput = (input) => {
@@ -75,6 +79,9 @@ const clearItems = () => {
     while(itemList.firstChild) {
         itemList.removeChild(itemList.firstChild);
     }
+    while(sortedList.firstChild) {
+        sortedList.removeChild(sortedList.firstChild);
+    }
     localStorage.removeItem('shoppingList');
     filterAndClearButton('none');
 }
@@ -101,11 +108,9 @@ const sortItems = () => {
     }
 }
 
-
-
 const categorize = async (e) => {
     e.preventDefault();
-    console.log(shoppingList)
+    sortedList.innerHTML = '';
     try {
         fetchChatResponse(createSortedCategory, sortedList, shoppingList, itemList);
     } catch (error) {
