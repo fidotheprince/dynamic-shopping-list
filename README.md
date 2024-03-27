@@ -1,6 +1,6 @@
 # Grocery Pal 😊
 
-![Shopping GIF](https://media.giphy.com/media/l2Je66zG6mAAZxgqI/giphy.gif)
+![Shopping GIF](https://media.giphy.com/media/26n6WywJyh39n1pBu/giphy.gif)
 
 ## Description
 
