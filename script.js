@@ -1,4 +1,4 @@
-import { handleInvalidEntry, createItem, addToShoppingList, deleteItem, removeFromShoppingList, createSortedCategory} from "./utilities.js";
+import { handleInvalidEntry, createItem, addToShoppingList, deleteItem, removeFromShoppingList, createSortedCategory, fetchChatResponse} from "./utilities.js";
 
 const itemForm = document.getElementById('item-form');
 const itemInput = document.getElementById('item-input');
@@ -7,8 +7,12 @@ const clearListBtn = document.getElementById('clear');
 const fInputContainer = document.querySelector('.filter');
 const categorizeButton = document.querySelector('.categorize');
 const sortedList = document.getElementById('sorted-list');
+const seeSortedList = document.querySelector('.see-sorted-list');
 
 const shoppingList = localStorage.getItem('shoppingList') ? JSON.parse(localStorage.getItem('shoppingList')) : [];
+const sortedListItems = localStorage.getItem('sortedList') ? JSON.parse(localStorage.getItem('sortedList')) : [];
+
+const hideSortingOptions = () => shoppingList.length < 10 ? categorizeButton.style.display = 'none' : categorizeButton.style.display = 'block';
 
 const filterInput = (input) => {
     if (input.value.length === 0) {
@@ -21,7 +25,7 @@ const filterInput = (input) => {
         return null;
     }
 
-    if(!/^[a-zA-Z]+$/.test(input.value)){
+    if(!/^[a-zA-Z]+( [a-zA-Z]+)*$/.test(input.value)){
         handleInvalidEntry("No special characters...just letters!", itemInput);
         return null;
     }
@@ -38,6 +42,7 @@ const loadItems = () => {
         filterAndClearButton('block');
     }
     shoppingList.length < 1 && filterAndClearButton('none');
+    hideSortingOptions()
 }
 
 const addItem = (e) => {
@@ -46,21 +51,23 @@ const addItem = (e) => {
 
     if(itemInput.value !== '') {
         sortedList.innerHTML = '';
+        shoppingList.length < 10 ? categorizeButton.style.display = 'none' : categorizeButton.style.display = 'block';
         addToShoppingList(itemInput.value, shoppingList);
         createItem(itemInput.value, itemList);
+        itemInput.value = '';
         filterAndClearButton('block');
     }
 };
 
 const removeItem = (e) => {
     e.preventDefault();
+    hideSortingOptions();
     if(e.target.classList.contains('fa-xmark')){
         e.target.closest('li').classList.add('fade-out');
         const item = e.target.closest('li').textContent.trim();
         removeFromShoppingList(item, shoppingList);
         deleteItem(e);
     }
-
     shoppingList.length < 1 && filterAndClearButton('none');
 }
 
@@ -77,7 +84,6 @@ const sortItems = () => {
     const value = input.value.toLowerCase();
     
     if(value.length < 1) {
-        //clear existing filtered list
         while(itemList.firstChild) {
             itemList.removeChild(itemList.firstChild);
         }
@@ -85,6 +91,7 @@ const sortItems = () => {
     }
     
     if(value.length > 1){
+        sortedList.innerHTML = '';
         let filteredItems = shoppingList.filter(item => item.toLowerCase().includes(value));
         //clear existing rendered list
         while(itemList.firstChild) {
@@ -94,24 +101,13 @@ const sortItems = () => {
     }
 }
 
+
+
 const categorize = async (e) => {
     e.preventDefault();
     console.log(shoppingList)
-    const url = 'http://localhost:3000';
-    const options = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(shoppingList)
-    }
     try {
-        const response = await fetch(url, options);
-        const json = await response.json();
-        const { data } = json;
-        const content = JSON.parse(data?.message?.content);
-        itemList.innerHTML = '';
-        content.forEach(category => createSortedCategory(category, sortedList));
+        fetchChatResponse(createSortedCategory, sortedList, shoppingList, itemList);
     } catch (error) {
         console.error('Error:', error);
     }

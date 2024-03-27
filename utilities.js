@@ -10,9 +10,11 @@ export const handleInvalidEntry = (message, inputElement) => {
     setTimeout(() => {
         inputElement.style.borderColor = 'black';
         inputElement.style.backgroundColor = 'white';
-        inputElement.placeholder = 'Enter Item';
+        inputElement.placeholder = 'Ready to create your shopping list? Add items here!';
     }, 3750);
 }
+
+
 
 export const createItem = (itemName, itemList) => {
     const li = document.createElement('li');
@@ -38,15 +40,29 @@ export const createSortedCategory = (category, sortedList) => {
         <ul>${category[title].map(item => `
                 <li class="fade-in sorted-item">
                     ${item}
-                    <button class="remove-item btn-link text-red">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
                 </li>
             `).join('')}
         </ul>
     `;
 
     sortedList.appendChild(li);
+}
+
+export const fetchChatResponse = async (createSortedCategory, sortedList, shoppingList, itemList) => {
+    const url = 'http://localhost:3000';
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(shoppingList)
+    }
+    const response = await fetch(url, options);
+    const json = await response.json();
+    const { data } = json;
+    const content = JSON.parse(data?.message?.content);
+    itemList.innerHTML = '';
+    content.forEach(category => createSortedCategory(category, sortedList));
 }
 
 export const deleteItem = (e) => {

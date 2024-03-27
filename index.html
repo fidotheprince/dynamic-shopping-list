@@ -17,9 +17,10 @@
   <body>
     <div class="container">
       <header>
-        <img src="images/note.png" alt="" />
-        <h1>Shopping List</h1>
+          <i class="grocery-cart">🛒</i>
+          <h1>Grocery Pal</h1>
       </header>
+  
       <form id="item-form">
         <div class="form-control">
           <input
@@ -27,19 +28,25 @@
             class="form-input"
             id="item-input"
             name="item"
-            placeholder="Enter Item"
+            placeholder="Ready to create your shopping list? Add items here!"
           />
         </div>
         <div class="form-control">
           <button type="submit" class="btn">
-            <i class="fa-solid fa-plus"></i> Add Item
+            <i class="fa-solid fa-plus"></i> 
+            <span>Add Item</span> 
           </button>
-          <button type="submit" class="btn categorize">
-            <i class="fa-solid fa-plus"></i> Sort Items
+          <button class="btn categorize">
+            <i class="fa-solid fa-sort"></i> 
+            <span>Sort Items</span>
+          </button>
+          <button id="clear" class="btn-clear">
+            <i class="fa-solid fa-trash"></i> 
+            <span>Clear All</span>
           </button>
         </div>
       </form>
-
+ 
       <div class="filter">
         <input
           type="text"
@@ -48,11 +55,8 @@
           placeholder="Filter Items"
         />
       </div>
-
       <ul id="item-list" class="items"></ul>
       <ul id="sorted-list" class="sorted-items"></ul>
-
-      <button id="clear" class="btn-clear">Clear All</button>
     </div>
 
     <script type="module" src="script.js"></script>

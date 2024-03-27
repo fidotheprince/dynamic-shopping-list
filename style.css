@@ -13,18 +13,27 @@ body {
   font-size: 16px;
   line-height: 1.5;
   color: #333;
-  background-color: #f5f5f5;
+  background: linear-gradient(270deg, #ffffff, #f5f5f5, #c2e1ec);
+  background-size: 600% 600%;
+  animation: Gradient 15s ease infinite;
+  height: 100vh;
+  margin: 0;
+}
+
+@keyframes Gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 header {
   display: flex;
-  justify-content: flex-start;
   align-items: center;
   margin-bottom: 20px;
 }
 
 header h1 {
-  font-weight: 300;
+  font-weight: bold;
   margin-left: 10px;
 }
 
@@ -36,6 +45,10 @@ header h1 {
 
 .edit-mode {
   color: #ccc;
+}
+
+.grocery-cart {
+  font-size: 25px;
 }
 
 /* Form & Input */
@@ -94,47 +107,45 @@ header h1 {
   outline: none;
 }
 
-/* Buttons */
-.btn {
+.form-control {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.btn, .btn-clear {
   background-color: #333;
   color: #fff;
   border: none;
   border-radius: 5px;
   padding: 10px 20px;
   cursor: pointer;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.btn-clear {
+  background-color: #c30010;
 }
 
 .btn:hover {
   background-color: #444;
 }
 
-.btn-link {
-  font-size: 16px;
-  background-color: transparent;
-  color: #333;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-}
-
-.btn-clear {
-  margin-top: 20px;
-  width: 100%;
-  font-size: 16px;
-  background-color: transparent;
-  color: #333;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 10px 20px;
-  cursor: pointer;
-}
-
 .btn-clear:hover {
-  background-color: #f1f1f1;
+  background-color: #77000a;
 }
 
 .text-red {
   color: red;
+}
+
+.btn-link {
+  border: none;
+  background-color: transparent;
+}
+
+.btn-link:hover {
+  cursor: pointer;
 }
 
 .sorted-items {
