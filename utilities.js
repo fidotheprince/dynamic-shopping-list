@@ -51,7 +51,7 @@ export const createSortedCategory = (category, sortedList) => {
 export const fetchChatResponse = async (createSortedCategory, sortedList, shoppingList, itemList) => {
     localStorage.getItem('sortedList') && localStorage.removeItem('sortedList');
     
-    const url = 'http://localhost:3000';
+    const url = 'http://localhost:3000/';
     const options = {
         method: 'POST',
         headers: {
@@ -88,4 +88,9 @@ export const removeFromShoppingList = (item, shoppingList) => {
     shoppingList.splice(index, 1);
     shoppingList.length < 1 ? localStorage.removeItem('shoppingList') :
     localStorage.setItem('shoppingList', JSON.stringify(shoppingList));
+}
+
+export const filterAndClearButton = (state, fInputContainer, clearListBtn) => {
+    fInputContainer.style.display = state;
+    clearListBtn.style.display = state;
 }
