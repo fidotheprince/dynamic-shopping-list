@@ -75,7 +75,8 @@ const removeItem = (e) => {
     shoppingList.length < 1 && filterAndClearButton('none');
 }
 
-const clearItems = () => {
+const clearItems = (e) => {
+    e.preventDefault();
     while(itemList.firstChild) {
         itemList.removeChild(itemList.firstChild);
     }

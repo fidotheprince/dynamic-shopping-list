@@ -3,18 +3,18 @@ export const handleInvalidEntry = (message, inputElement) => {
         console.error('Invalid input element or label arguments');
         return null;
     }
+
     inputElement.value = '';
     inputElement.style.borderColor = 'red';
     inputElement.style.backgroundColor = '#F8C8DC';
     inputElement.placeholder = message ? message : 'Invalid Entry';
+
     setTimeout(() => {
         inputElement.style.borderColor = 'black';
         inputElement.style.backgroundColor = 'white';
         inputElement.placeholder = 'Ready to create your shopping list? Add items here!';
     }, 3750);
-}
-
-
+};
 
 export const createItem = (itemName, itemList) => {
     const li = document.createElement('li');
@@ -46,11 +46,11 @@ export const createSortedCategory = (category, sortedList) => {
     `;
 
     sortedList.appendChild(li);
-}
+};
 
 export const fetchChatResponse = async (createSortedCategory, sortedList, shoppingList, itemList) => {
     localStorage.getItem('sortedList') && localStorage.removeItem('sortedList');
-    
+
     const url = 'https://dynamic-shopping-api-fd908359fc38.herokuapp.com/';
     const options = {
         method: 'POST',
@@ -58,39 +58,42 @@ export const fetchChatResponse = async (createSortedCategory, sortedList, shoppi
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(shoppingList)
-    }
+    };
+
     const response = await fetch(url, options);
     const json = await response.json();
     const { data } = json;
-    if(!data) {
+
+    if (!data) {
         console.error('No data received');
         return null;
     }
+
     const content = JSON.parse(data?.message?.content);
     localStorage.setItem('sortedList', JSON.stringify(content));
     itemList.innerHTML = '';
     content.forEach(category => createSortedCategory(category, sortedList));
-}
+};
 
 export const deleteItem = (e) => {
     setTimeout(() => {
         e.target.closest('li').remove();
     }, 500);
-}
+};
 
 export const addToShoppingList = (item, shoppingList) => {
     shoppingList.push(item);
     localStorage.setItem('shoppingList', JSON.stringify(shoppingList));
-}
+};
 
 export const removeFromShoppingList = (item, shoppingList) => {
     const index = shoppingList.indexOf(item);
     shoppingList.splice(index, 1);
     shoppingList.length < 1 ? localStorage.removeItem('shoppingList') :
     localStorage.setItem('shoppingList', JSON.stringify(shoppingList));
-}
+};
 
 export const filterAndClearButton = (state, fInputContainer, clearListBtn) => {
     fInputContainer.style.display = state;
     clearListBtn.style.display = state;
-}
+};

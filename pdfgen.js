@@ -30,7 +30,8 @@ const generateListPDF = (shoppingList, pdf) => {
     pdf.save("shopping-list.pdf");
 }
 
-downloadButton.addEventListener("click", () => {
+const generatePDF = (e) => {
+    e.preventDefault();
     const shoppingList = localStorage.getItem('shoppingList') ? JSON.parse(localStorage.getItem('shoppingList')) : [];
     const sortedList = localStorage.getItem('sortedList') ? JSON.parse(localStorage.getItem('sortedList')) : [];
     const pdf = new jsPDF();
@@ -42,4 +43,6 @@ downloadButton.addEventListener("click", () => {
     if(itemListElement.children.length > 0) {
         generateListPDF(shoppingList, pdf);
     }
-})
+}
+
+downloadButton.addEventListener("click", generatePDF)
