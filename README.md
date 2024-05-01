@@ -4,7 +4,7 @@
 
 ## Description
 
-A spin on a classic grocery list application, Grocery Pal allows users to create a list of grocery items and sort them by category dynamically through the use of Text Model in the background. This application is perfect for users who want to keep their grocery list organized and sorted by category.
+A spin on a classic grocery list application, Grocery Pal allows users to categorize their list using a Text Model (AI) [GPT 3.5 Turbo-infused API I built](https://github.com/fidotheprince/dynamic-shopping-api). This application is perfect for users who want to keep their grocery list organized and sorted by category.
 
 Accordingly, this application will automatically sort the list by category and display the sorted list to the user. The text model in the backend will classify any set of items you submit to your list. 
 
