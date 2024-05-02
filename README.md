@@ -34,7 +34,6 @@ Replace `<project-directory>` with the name of the directory that was created wh
 
 ```
 file:///path/to/your/project-directory/index.html
-
 ```
 Replace `/path/to/your/project-directory` with the actual path to the project directory.
 
