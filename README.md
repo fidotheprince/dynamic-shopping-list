@@ -10,6 +10,10 @@ Accordingly, this application will automatically sort the list by category and d
 
 You're also able to print out your list and take it with to the store, or send it to a loved one to pick up the items for you, by downloading a PDF of your list.
 
+## System Design 
+
+![System Design](https://effulgent-praline-4dbf11.netlify.app/documents/grocery-pal-design.png)
+
 ## Installation
 
 Follow these steps to run this project on your local machine:
